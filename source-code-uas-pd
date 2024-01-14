@@ -1,0 +1,109 @@
+using System;
+
+namespace DuaBangunan
+{
+  class EncapsulationField
+  {
+    // rumus volume tabung : pi * r * r * t
+    // rumus volume kerucut : pi / 3 * r * r * t
+    // saya buat tinggi tabung dan tinggi kerucut nilainya sama
+
+    public double jariJari;
+    public double tinggi; // karena nilainya sama, saya bikin satu variable saja
+
+    public double VolumeTabung()
+    {
+      return Math.PI * jariJari * jariJari * tinggi;
+    }
+
+    public double VolumeKerucut()
+    {
+      return Math.PI / 3 * jariJari * jariJari * tinggi;
+    }
+
+    public double VolumeGabungan()
+    {
+      return VolumeTabung() + VolumeKerucut();
+    }
+
+    public void Display()
+    {
+      Console.WriteLine("Volume tabung adalah : {0}", VolumeTabung());
+      Console.WriteLine("Volume kerucut adalah : {0}", VolumeKerucut());
+      Console.WriteLine("Volume gabungan dari bangun ruang tabung dan kerucut adalah : {0}", VolumeGabungan());
+    }
+  }
+
+  class ExecuteEncapsulationField
+  {
+    static void Main(string[] args)
+    {
+      EncapsulationField ef = new EncapsulationField();
+      ef.jariJari = 2.0;
+      ef.tinggi = 6.0;
+      ef.Display();
+    }
+  }
+
+  class InheritanceField
+  {
+    class Geometry
+    {
+      public void setJariJari(double r)
+      {
+        jariJari = r;
+      }
+
+      public void setTinggi(double t)
+      {
+        tinggi = t;
+      }
+
+      public void setLuasAlas(double la)
+      {
+        luasAlas = la;
+      }
+
+      protected double jariJari;
+      protected double tinggi;
+      protected double luasAlas;
+    }
+
+    // derived / child class
+    class Tabung : Geometry
+    {
+      public double VolumeTabung()
+      {
+        return ( Math.PI * jariJari * jariJari * tinggi );
+      }
+    }
+
+    class Limas : Geometry
+    {
+      public double VolumeLimas()
+      {
+        return ( luasAlas / 3 * tinggi );
+      }
+    }
+
+    //class ExecuteInheritanceField
+    //{
+    //  static void Main(string[] args)
+    //  {
+    //    Tabung tab = new Tabung();
+
+    //    tab.setJariJari(4.0);
+    //    tab.setTinggi(8.0);
+
+    //    Limas lm = new Limas();
+
+    //    lm.setLuasAlas(6.0);
+    //    lm.setTinggi(12.0);
+
+    //    Console.WriteLine("Volume tabung adalah : {0}", tab.VolumeTabung());
+    //    Console.WriteLine("Volume limas adalah : {0}", lm.VolumeLimas());
+    //    Console.WriteLine("Volume gabungan dari bangun ruang tabung dan limas adalah : {0}", tab.VolumeTabung() + lm.VolumeLimas() );
+    //  }
+    //}
+  }
+}
